@@ -5,4 +5,4 @@ Su complejidad temporal es de O(n), ya que se manda a llamar a sí misma n veces
 Su complejidad temporal es de O(n), ya que el número de iteraciones va desde 0 hasta n
 
 #SUMA DIRECTA
-Complejidad logaritmica O(log n), ya que independientemente del número que recibe, solo necesita un paso
+Complejidad constante, ya que independientemente del número que recibe, solo necesita un paso
