@@ -130,8 +130,7 @@ template <class T>
 T List<T>::remove(int index) throw (IndexOutOfBounds) {
   int pos = 0;
   Link<T> *p;
-  Link<T> *borrar;
-  borrar = 
+  Link<T> *borrar; 
   p = 0;
   borrar = head;
   int val;
