@@ -19,12 +19,12 @@ private:
 	void swap(unsigned int, unsigned int);
    
 public:
-	Heap(unsigned int) throw (OutOfMemory);
+	Heap(unsigned int);
 	~Heap();
 	bool empty() const;
 	bool full() const;
-	void add(T) throw (Overflow);
-	T remove() throw (NoSuchElement);
+	void add(T);
+	T remove();
 	void clear();
 	std::string toString() const;
   void pop();
@@ -33,7 +33,7 @@ public:
   void push(unsigned int);
 };
 template <class T>
-Heap<T>::Heap(unsigned int sze) throw (OutOfMemory) {
+Heap<T>::Heap(unsigned int sze) {
 	lenght = sze;
 	data = new T[lenght];
 	if (data == 0) {
@@ -136,4 +136,4 @@ void Heap<T>::heapify(unsigned int pos){
   }
 }
 
-#endif /* HASH_H_ */
+#endif 
