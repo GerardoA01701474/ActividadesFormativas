@@ -1,7 +1,7 @@
 # push:
-es de complejidad logaritmica O(n) porque en el peor de los casos (cuando el numero a ingresar es el más pequeño) tiene que pasar por cada nivel del arbol para llevar el nuevo valor hasta arriba
+es de complejidad logaritmica O(log(n)) porque en el peor de los casos (cuando el numero a ingresar es el más pequeño) solo recorre una rama para acomodar el nuevo numero
 # pop:
-es de complejidad lineal O(n) porque desoués de sacar el más prioritario y reemplazarlo por el último hijo, tiene que recorrer la mitad del arbol haciendo la función heapify para regresar el último hijo hasta abajo
+es de complejidad O(log(n)) porque desoués de sacar el más prioritario y reemplazarlo por el último hijo,  recorre una sola rama del arbol haciendo la función heapify para regresar el último hijo hasta abajo
 # top:
 es complejidad constante O(1) porque solo devuelve el primer valor del arreglo, es decir data[0]
 # empty:
