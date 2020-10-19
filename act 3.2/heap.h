@@ -23,8 +23,6 @@ public:
 	~Heap();
 	bool empty() const;
 	bool full() const;
-	void add(T);
-	T remove();
 	void clear();
 	std::string toString() const;
   void pop();
