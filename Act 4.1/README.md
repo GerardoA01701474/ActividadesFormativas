@@ -7,4 +7,4 @@ recorre la matriz con dos for loops, esto lo convierte en O(n^2)
 # PrintList:
 recorre la lista con dos for loops, esto lo convierte en O(n^2)
 # Recorridos DFS y BFS
-no fueron implementados en esta entrega, dependiendo de la implementación puede ser O(n^2)
+no fueron implementados en esta entrega, dependiendo de la implementación puede ser O(n^2) u O(n)
