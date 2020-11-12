@@ -6,3 +6,5 @@ recorre cada linea del archivo de texto y luego con ayuda de una función auxili
 recorre la matriz con dos for loops, esto lo convierte en O(n^2)
 # PrintList:
 recorre la lista con dos for loops, esto lo convierte en O(n^2)
+# Recorridos DFS y BFS
+no fueron implementados en esta entrega
