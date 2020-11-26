@@ -33,6 +33,7 @@ class Graph{
   string printVisited(vector<int> &visitedOrder);
   string printPath(int[], int, int);
   void sortAdjList();
+  string BFS(int, int);
 };
 
 Graph::Graph(){
@@ -243,6 +244,9 @@ string Graph::printPath(int path[], int start, int goal){
     reverse.pop();
   }
   return aux.str();
+}
+string Graph::BFS(int a, int b){
+  DFS(a, b);
 }
 
  
