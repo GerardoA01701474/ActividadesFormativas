@@ -22,14 +22,17 @@ class Graph{
   Graph();
   void loadGraphList(string,int, int);
   void loadGraphMat(string, int, int);
-  void nprintAdjList();
-  void nprintAdjMat();
-  void depthSearchFirst(int, int);
   void List(int, int);
   void Matrix(int, int);
-  void sortAdjList();
+  void nprintAdjList();
+  void nprintAdjMat();
   std::string printAdjList();
   std::string printAdjMat();
+  string DFS(int, int);
+  void DFSHelper(int current, int goal, stack<int> &st, bool visited[], int paths[], vector<int> &visitedOrder);
+  string printVisited(vector<int> &visitedOrder);
+  string printPath(int[], int, int);
+  void sortAdjList();
 };
 
 Graph::Graph(){
@@ -136,6 +139,108 @@ std::string Graph::printAdjMat(){
     for (int j = 0; j < nodes; j++){
       aux <<adjMat[i * nodes + j]<< " ";
     }
+  }
+  return aux.str();
+}
+
+/*
+void Graph::depthSearchFirst(int start, int goal){
+  stack <int> st;
+  list <int> visited;
+  vector <vector<int>> paths(nodes, vector<int>(1, -1));
+  st.push(start);
+  depth(start, goal, st, visited, paths);
+  printPath(paths, start, goal);
+
+}
+
+
+
+void Graph::depth(int curr, int goal, stack<int> &st, list<int> &visited, vector<vector<int>> &paths){
+  if (curr == goal){
+    printVisited(visited);
+  }else {
+    curr = st.top();
+    st.pop();
+    visited.push_back(curr);
+    for (int i = 0; i < adjList[curr].size(); i++){
+      if (!contains(visited, adjList[curr][i])){
+        st.push(adjList[curr][i]);
+        paths[adjList[curr][i]][0] = curr;
+      }
+    }
+    depth(curr, goal, st, visited, paths); 
+  }
+}
+
+bool Graph::contains(list<int> ls, int node){
+  list<int>::iterator it;
+  it = find(ls.begin(), ls.end(), node);
+  if(it != ls.end()){
+    return true;
+  }else{
+    return false;
+  }
+} */
+string Graph::DFS(int start, int goal){
+  //sortAdjList();
+  stringstream aux;
+  stack<int> st;
+  bool visited[nodes];
+  vector<int> visitedOrder;
+  int path[nodes];
+  for (int i = 0; i < nodes; i++){
+    visited[i] = false;
+    path[i] = -1;
+  }
+  st.push(start);
+  DFSHelper (start, goal, st, visited, path, visitedOrder);
+  aux << printVisited(visitedOrder) << printPath(path, start, goal);
+  return aux.str();
+}
+
+void Graph::DFSHelper(int current, int goal, stack<int> &st, bool visited[], int paths[], vector<int> &visitedOrder){
+  if (current == goal){
+    return;
+  }else if (st.empty()){
+    cout << "no encontrado";
+  }else{
+    current = st.top();
+    st.pop();
+    visited[current] = true;
+    visitedOrder.push_back(current);
+    for (int i = 0; i < adjList[current].size(); i++){
+      if(visited[adjList[current][i]] == false){
+        st.push(adjList[current][i]);
+        paths[adjList[current][i]] = current;
+      }
+    }
+    DFSHelper(current, goal, st, visited, paths, visitedOrder);
+  }
+}
+
+string Graph::printVisited(vector<int> &visitedOrder){
+  stringstream aux;
+  aux << "visited:";
+  for (int i = 0; i < visitedOrder.size(); i++){
+    aux << " " << visitedOrder[i];
+  }
+  return aux.str();
+}
+
+string Graph::printPath(int path[], int start, int goal){
+  stringstream aux;
+  stack<int> reverse;
+  int node = goal;
+  while (node != start){
+    reverse.push(node);
+    node = path[node];
+  }
+  reverse.push(start);
+  aux << " path:";
+  while (!reverse.empty()){
+    aux << " "<< reverse.top();
+    reverse.pop();
   }
   return aux.str();
 }
