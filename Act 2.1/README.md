@@ -5,4 +5,4 @@ es de complejidad O(n) porque puede darse el caso en el que el valor a buscar es
 ## Función Update:
 es de complejidad O(n) porque se considera el peor de los casos cuando tiene que viajar por toda la lista para encontrar el dato a actualizar
 ## Función Remove:
-es de complejidad O(n) porque se considera el peor de los casos cuando el elemento a borrar está al final.
+es de complejidad O(n) porque se considera el peor de los casos cuando el elemento a borrar está al final y se tendría que recorrer toda la lista para llegar al nodo deseado
