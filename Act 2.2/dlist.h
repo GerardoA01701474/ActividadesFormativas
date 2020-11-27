@@ -42,8 +42,8 @@ public:
 
 	void addFirst(T) throw (OutOfMemory);
 	void add(T) throw (OutOfMemory);
-	T    removeFirst() throw (NoSuchElement);
-	T    removeLast() const throw (NoSuchElement);
+	void removeFirst() throw (NoSuchElement);
+	void removeLast() const throw (NoSuchElement);
 	int  length() const;
 	int find(T) const;
 	bool empty() const;
@@ -133,11 +133,30 @@ void DList<T>::add(T val) throw (OutOfMemory) {
     tail->next = p;
     tail = p;
   }
- 
+ size ++;
 }
 
 template <class T>
-T DList<T>::removeFirst() throw (NoSuchElement) {
+void DList<T>::removeFirst() throw (NoSuchElement) {
+  	T val;
+	DLink<T> *p;
+
+	if (empty()) {
+		throw NoSuchElement();
+	}
+
+	p = head;
+	val = p->value;
+
+	if (head == tail) {
+		head = 0;
+		tail = 0;
+	} else {
+		head = p->next;
+		p->next->previous = 0;
+	}
+	delete p;
+	size--;
 }
 
 
@@ -226,6 +245,35 @@ int DList<T>::lastIndexOf(T val) const {
 
 template <class T>
 void DList<T>::remove(int index) throw (IndexOutOfBounds) {
+  int pos;
+	T val;
+	DLink<T> *p;
+  std::cout << "hola: " << size;
+	if (index < 0 || index >= size) {
+		throw IndexOutOfBounds();
+	}
+
+	if (index == 0) {
+		return removeFirst();
+	}
+
+	p = head;
+	pos = 0;
+	while (pos != index) {
+		p = p->next;
+		pos++;
+	}
+
+	val = p->value;
+	p->previous->next = p->next;
+	if (p->next != 0) {
+		p->next->previous = p->previous;
+	}
+	size--;
+
+	delete p;
+  
+  /*
   DLink<T> *p;
   DLink<T> *borrar;
   p = 0;
@@ -246,11 +294,9 @@ void DList<T>::remove(int index) throw (IndexOutOfBounds) {
   }
   p->next = borrar->next;
   borrar->next->previous= borrar->previous;
-  /*borrar->next = 0;
-  borrar->previous = 0;*/
   delete borrar;
-  size --;
-}
+  size --;*/
+} 
 
 template <class T>
 bool DList<T>::removeFirstOcurrence(T val) {
